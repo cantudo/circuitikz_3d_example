@@ -1,0 +1,203 @@
+
+\documentclass[]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{intersections,decorations.markings,positioning,3d}
+\usetikzlibrary{circuits.ee.IEC.relay, arrows.meta}
+\usepackage{circuitikz}
+\usepackage{fix-cm}
+
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{50}{60}}
+\makeatother
+
+\makeatletter
+\newcommand\HUGEE{\@setfontsize\Huge{35}{60}}
+\makeatother
+
+\makeatletter
+\newcommand\HUGER{\@setfontsize\Huge{80}{90}}
+\makeatother
+
+
+\tikzset{
+    bigV/.style={V, sources/scale=1.5},
+    scaled V/.style={V, sources/scale=#1},
+    scaled/.default=1, % or whatever
+}
+
+\tikzset{
+    bigsV/.style={sV, sources/scale=1.5},
+    scaled sV/.style={sV, sources/scale=#1},
+    scaled/.default=1, % or whatever
+}
+
+\tikzset{
+    bigR/.style={resistor, resistors/scale=1.5},
+    scaled R/.style={resistor, resistors/scale=#1},
+    scaled/.default=1, % or whatever
+}
+
+\begin{document}
+
+%\begin{tikzpicture}[x={({cos(20)},{-sin(20)},0)},z={({-sin(40)},{-cos(40)},0)},scale=0.7,
+\begin{tikzpicture}[x={(-10:1cm)}, y={(225:0.8cm)}, z={(90:1cm)},scale=0.7,
+  point/.style={minimum  size=1pt,inner  sep=2pt, circle, draw, red},
+  line join=round,
+  cont/.style={contact, draw, thick},
+%  circuit ee IEC,
+  thick,
+  ]
+  \ctikzset{resistor = american, voltage = american}
+  \begin{scope}[line width=1.5pt]
+  \ctikzset{bipoles/thickness=1.5}
+  \ctikzset{bipoles/vsourceam/inner plus={\HUGEE $+$}}
+  \ctikzset{bipoles/vsourceam/inner minus={\HUGEE $-$}}
+\filldraw[draw=black,fill=blue!30,opacity=0.8] (6.0,6.0,-12.799999999999999) -- (18.0,6.0,-12.799999999999999) -- (12.0,12.0,-20.799999999999997) -- cycle;
+\filldraw[draw=black,fill=blue!30,opacity=0.8] (18.0,6.0,-12.799999999999999) -- (18.0,18.0,-12.799999999999999) -- (12.0,12.0,-20.799999999999997) -- cycle;
+\filldraw[draw=black,fill=blue!30,opacity=0.8] (6.0,18.0,-12.799999999999999) -- (6.0,6.0,-12.799999999999999) -- (12.0,12.0,-20.799999999999997) -- cycle;
+\filldraw[draw=black,fill=blue!30,opacity=0.8] (18.0,18.0,-12.799999999999999) -- (6.0,18.0,-12.799999999999999) -- (12.0,12.0,-20.799999999999997) -- cycle;
+\filldraw[draw=black,fill=blue!30,opacity=0.8] (6.0,6.0,-12.799999999999999) -- (18.0,6.0,-12.799999999999999) -- (18.0,18.0,-12.799999999999999) -- (6.0,18.0,-12.799999999999999) -- cycle;
+\begin{scope}[canvas is xy plane at z=-12.799999999999999]
+\node[draw=black, circle, transform shape, yscale=-1] at (12.0,12.0) {\HUGER QPC};
+\end{scope}
+\draw[] (12.0,12.0,0) -- (12.0,12.0,-12.799999999999999);
+\filldraw[draw=black,fill=gray!50,opacity=0.7]  (24,0,-1.6) -- (24,24,-1.6) -- (0,24,-1.6) -- (0,0,-1.6) -- cycle;
+\filldraw[draw=black,fill=gray!50,opacity=0.7]  (24,0,-1.6) -- (0,0,-1.6) -- (0,0,0) -- (24,0,0) -- cycle;
+\filldraw[draw=black,fill=gray!50,opacity=0.7]  (0,0,-1.6) -- (0,24,-1.6) -- (0,24,0) -- (0,0,0) -- cycle;
+\filldraw[draw=black,fill=gray!50,opacity=0.7]  (24,0,-1.6) -- (24,24,-1.6) -- (24,24,0) -- (24,0,0) -- cycle;
+\filldraw[draw=black,fill=gray!50,opacity=0.7]  (24,0,0) -- (24,24,0) -- (0,24,0) -- (0,0,0) -- cycle;
+\filldraw[draw=black,fill=gray!50,opacity=0.7]  (0,24,-1.6) -- (24,24,-1.6) -- (24,24,0) -- (0,24,0) -- cycle;
+\fill[fill=blue!15,opacity=0.7] (0,0,0) -- (0,24,0) -- (24,24,0) -- (24,0,0) -- cycle;
+\fill[fill=orange!30,opacity=0.7] (24,0,0) -- (24,24,0) -- (24,24,8) -- (24,0,8) -- cycle;
+\fill[fill=orange!30,opacity=0.7] (16,0,0) -- (16,24,0) -- (16,24,8) -- (16,0,8) -- cycle;
+\fill[fill=orange!30,opacity=0.7] (8,0,0) -- (8,24,0) -- (8,24,8) -- (8,0,8) -- cycle;
+\fill[fill=orange!30,opacity=0.7] (0,0,0) -- (0,24,0) -- (0,24,8) -- (0,0,8) -- cycle;
+\draw (0,0,8) to [resistor, color=red, *-*] (0,0,0);
+\draw (8,0,8) to [resistor, color=red, *-*] (8,0,0);
+\draw (16,0,8) to [resistor, color=red, *-*] (16,0,0);
+\draw (24,0,8) to [resistor, color=red, *-*] (24,0,0);
+\draw (0,8,8) to [resistor, color=red, *-*] (0,8,0);
+\draw (8,8,8) to [resistor, color=red, *-*] (8,8,0);
+\draw (16,8,8) to [resistor, color=red, *-*] (16,8,0);
+\draw (24,8,8) to [resistor, color=red, *-*] (24,8,0);
+\draw (0,16,8) to [resistor, color=red, *-*] (0,16,0);
+\draw (8,16,8) to [resistor, color=red, *-*] (8,16,0);
+\draw (16,16,8) to [resistor, color=red, *-*] (16,16,0);
+\draw (24,16,8) to [resistor, color=red, *-*] (24,16,0);
+\draw (0,24,8) to [resistor, color=red, *-*] (0,24,0);
+\draw (8,24,8) to [resistor, color=red, *-*] (8,24,0);
+\draw (16,24,8) to [resistor, color=red, *-*] (16,24,0);
+\draw (24,24,8) to [resistor, color=red, *-*] (24,24,0);
+\fill[fill=blue!15,opacity=0.7] (0,0,8) -- (0,24,8) -- (24,24,8) -- (24,0,8) -- cycle;
+\draw (0,0,8) to [resistor, color=blue, *-*] (8,0,8);
+\draw (8,0,8) to [resistor, color=blue, *-*] (16,0,8);
+\draw (16,0,8) to [resistor, color=blue, *-*] (24,0,8);
+\draw (0,8,8) to [resistor, color=blue, *-*] (8,8,8);
+\draw (8,8,8) to [resistor, color=blue, *-*] (16,8,8);
+\draw (16,8,8) to [resistor, color=blue, *-*] (24,8,8);
+\draw (0,16,8) to [resistor, color=blue, *-*] (8,16,8);
+\draw (0,24,8) to [resistor, color=blue, *-*] (8,24,8);
+\draw (8,16,8) to [resistor, color=blue, *-*] (16,16,8);
+\draw (8,24,8) to [resistor, color=blue, *-*] (16,24,8);
+\draw (16,16,8) to [resistor, color=blue, *-*] (24,16,8);
+\draw (16,24,8) to [resistor, color=blue, *-*] (24,24,8);
+\fill[fill=orange!30,opacity=0.7] (24,0,8) -- (24,24,8) -- (24,24,16) -- (24,0,16) -- cycle;
+\fill[fill=orange!30,opacity=0.7] (16,0,8) -- (16,24,8) -- (16,24,16) -- (16,0,16) -- cycle;
+\fill[fill=orange!30,opacity=0.7] (8,0,8) -- (8,24,8) -- (8,24,16) -- (8,0,16) -- cycle;
+\fill[fill=orange!30,opacity=0.7] (0,0,8) -- (0,24,8) -- (0,24,16) -- (0,0,16) -- cycle;
+\draw (0,0,8) to [resistor, color=blue, *-*] (0,8,8);
+\draw (8,0,8) to [resistor, color=blue, *-*] (8,8,8);
+\draw (16,0,8) to [resistor, color=blue, *-*] (16,8,8);
+\draw (24,0,8) to [resistor, color=blue, *-*] (24,8,8);
+\draw (0,8,8) to [resistor, color=blue, *-*] (0,16,8);
+\draw (8,8,8) to [resistor, color=blue, *-*] (8,16,8);
+\draw (16,8,8) to [resistor, color=blue, *-*] (16,16,8);
+\draw (24,8,8) to [resistor, color=blue, *-*] (24,16,8);
+\draw (0,16,8) to [resistor, color=blue, *-*] (0,24,8);
+\draw (8,16,8) to [resistor, color=blue, *-*] (8,24,8);
+\draw (16,16,8) to [resistor, color=blue, *-*] (16,24,8);
+\draw (24,16,8) to [resistor, color=blue, *-*] (24,24,8);
+\draw (0,0,16) to [resistor, color=red, *-*] (0,0,8);
+\draw (8,0,16) to [resistor, color=red, *-*] (8,0,8);
+\draw (16,0,16) to [resistor, color=red, *-*] (16,0,8);
+\draw (24,0,16) to [resistor, color=red, *-*] (24,0,8);
+\draw (0,8,16) to [resistor, color=red, *-*] (0,8,8);
+\draw (8,8,16) to [resistor, color=red, *-*] (8,8,8);
+\draw (16,8,16) to [resistor, color=red, *-*] (16,8,8);
+\draw (24,8,16) to [resistor, color=red, *-*] (24,8,8);
+\draw (0,16,16) to [resistor, color=red, *-*] (0,16,8);
+\draw (8,16,16) to [resistor, color=red, *-*] (8,16,8);
+\draw (16,16,16) to [resistor, color=red, *-*] (16,16,8);
+\draw (24,16,16) to [resistor, color=red, *-*] (24,16,8);
+\draw (0,24,16) to [resistor, color=red, *-*] (0,24,8);
+\draw (8,24,16) to [resistor, color=red, *-*] (8,24,8);
+\draw (16,24,16) to [resistor, color=red, *-*] (16,24,8);
+\draw (24,24,16) to [resistor, color=red, *-*] (24,24,8);
+\fill[fill=blue!15,opacity=0.7] (0,0,16) -- (0,24,16) -- (24,24,16) -- (24,0,16) -- cycle;
+\draw (0,0,16) to [resistor, color=blue, *-*] (8,0,16);
+\draw (8,0,16) to [resistor, color=blue, *-*] (16,0,16);
+\draw (16,0,16) to [resistor, color=blue, *-*] (24,0,16);
+\draw (0,8,16) to [resistor, color=blue, *-*] (8,8,16);
+\draw (8,8,16) to [resistor, color=blue, *-*] (16,8,16);
+\draw (16,8,16) to [resistor, color=blue, *-*] (24,8,16);
+\draw (0,16,16) to [resistor, color=blue, *-*] (8,16,16);
+\draw (0,24,16) to [resistor, color=blue, *-*] (8,24,16);
+\draw (8,16,16) to [resistor, color=blue, *-*] (16,16,16);
+\draw (8,24,16) to [resistor, color=blue, *-*] (16,24,16);
+\draw (16,16,16) to [resistor, color=blue, *-*] (24,16,16);
+\draw (16,24,16) to [resistor, color=blue, *-*] (24,24,16);
+\fill[fill=orange!30,opacity=0.7] (24,0,16) -- (24,24,16) -- (24,24,24) -- (24,0,24) -- cycle;
+\fill[fill=orange!30,opacity=0.7] (16,0,16) -- (16,24,16) -- (16,24,24) -- (16,0,24) -- cycle;
+\fill[fill=orange!30,opacity=0.7] (8,0,16) -- (8,24,16) -- (8,24,24) -- (8,0,24) -- cycle;
+\fill[fill=orange!30,opacity=0.7] (0,0,16) -- (0,24,16) -- (0,24,24) -- (0,0,24) -- cycle;
+\draw (0,0,16) to [resistor, color=blue, *-*] (0,8,16);
+\draw (8,0,16) to [resistor, color=blue, *-*] (8,8,16);
+\draw (16,0,16) to [resistor, color=blue, *-*] (16,8,16);
+\draw (24,0,16) to [resistor, color=blue, *-*] (24,8,16);
+\draw (0,8,16) to [resistor, color=blue, *-*] (0,16,16);
+\draw (8,8,16) to [resistor, color=blue, *-*] (8,16,16);
+\draw (16,8,16) to [resistor, color=blue, *-*] (16,16,16);
+\draw (24,8,16) to [resistor, color=blue, *-*] (24,16,16);
+\draw (0,16,16) to [resistor, color=blue, *-*] (0,24,16);
+\draw (8,16,16) to [resistor, color=blue, *-*] (8,24,16);
+\draw (16,16,16) to [resistor, color=blue, *-*] (16,24,16);
+\draw (24,16,16) to [resistor, color=blue, *-*] (24,24,16);
+\draw (0,0,24) to [resistor, color=red, *-*] (0,0,16);
+\draw (8,0,24) to [resistor, color=red, *-*] (8,0,16);
+\draw (16,0,24) to [resistor, color=red, *-*] (16,0,16);
+\draw (24,0,24) to [resistor, color=red, *-*] (24,0,16);
+\draw (0,8,24) to [resistor, color=red, *-*] (0,8,16);
+\draw (8,8,24) to [resistor, color=red, *-*] (8,8,16);
+\draw (16,8,24) to [resistor, color=red, *-*] (16,8,16);
+\draw (24,8,24) to [resistor, color=red, *-*] (24,8,16);
+\draw (0,16,24) to [resistor, color=red, *-*] (0,16,16);
+\draw (8,16,24) to [resistor, color=red, *-*] (8,16,16);
+\draw (16,16,24) to [resistor, color=red, *-*] (16,16,16);
+\draw (24,16,24) to [resistor, color=red, *-*] (24,16,16);
+\draw (0,24,24) to [resistor, color=red, *-*] (0,24,16);
+\draw (8,24,24) to [resistor, color=red, *-*] (8,24,16);
+\draw (16,24,24) to [resistor, color=red, *-*] (16,24,16);
+\draw (24,24,24) to [resistor, color=red, *-*] (24,24,16);
+\filldraw[draw=black,fill=gray!50,opacity=0.7]  (24,0,24) -- (24,24,24) -- (0,24,24) -- (0,0,24) -- cycle;
+\filldraw[draw=black,fill=gray!50,opacity=0.7]  (24,0,24) -- (0,0,24) -- (0,0,25.6) -- (24,0,25.6) -- cycle;
+\filldraw[draw=black,fill=gray!50,opacity=0.7]  (0,0,24) -- (0,24,24) -- (0,24,25.6) -- (0,0,25.6) -- cycle;
+\filldraw[draw=black,fill=gray!50,opacity=0.7]  (24,0,24) -- (24,24,24) -- (24,24,25.6) -- (24,0,25.6) -- cycle;
+\filldraw[draw=black,fill=gray!50,opacity=0.7]  (24,0,25.6) -- (24,24,25.6) -- (0,24,25.6) -- (0,0,25.6) -- cycle;
+\filldraw[draw=black,fill=gray!50,opacity=0.7]  (0,24,24) -- (24,24,24) -- (24,24,25.6) -- (0,24,25.6) -- cycle;
+\begin{scope}[canvas is xy plane at z=0]
+\draw[-{Triangle[scale=2,round,length=3.3mm]}] (12.0,28.0) -- (12.0,44.0) node[midway, above, transform shape, yscale=-1, rotate=90] {\HUGER M rows};
+\draw[-{Triangle[scale=2,round,length=3.3mm]}] (28.0,12.0) -- (44.0,12.0) node[midway, above, transform shape, yscale=-1, rotate=0] {\HUGER N columns};
+\end{scope}
+\begin{scope}[canvas is xz plane at y=0]
+\draw[-{Triangle[scale=2,round,length=3.3mm]}] (12.0,28.0) -- (12.0,40.0) node[midway, above, yscale=-1, transform shape , rotate=270, yscale=-1] {\HUGER Z layers};
+\end{scope}
+\draw (-24,12.0,27.2) to [scaled sV=5, l={\HUGE $V_\mathrm{app}$}, i={\hspace{20pt}\HUGE $I_\mathrm{RRAM}$}, current arrow scale=4] (-24,12.0,-22.88);
+\draw (-24,12.0,-22.88) -- (12.0,12.0,-22.88);
+\draw (12.0,12.0,-22.88) -- (12.0,12.0,-20.799999999999997);
+\draw (-24,12.0,27.2) to[scaled R=4, color=orange, bipoles/thickness=4,l={\begin{tabular}{ c }\HUGE $R_\mathrm{series}$\\ \vspace{15pt}\end{tabular}}] (12.0,12.0,27.2);
+\draw (12.0,12.0,27.2) -- (12.0,12.0,24.0);
+
+\end{scope}
+\end{tikzpicture}
+\end{document}
